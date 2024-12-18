@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import Breakdown from "./BreakDown/BreakdownItem";
+import BreakdownItem from "./BreakDown/BreakdownItem";
 import TextField from "../../Fields/TextField";
 import DateField from "../../Fields/DateField";
 
@@ -48,7 +48,7 @@ const StudioQuote = () => {
                 </div>
                 {
                     breakDownitems.map((items, index) => (
-                        <Breakdown
+                        <BreakdownItem
                             index={index}
                             handleAdditem={() => handleAdditem(index)}
                             handleRemoveitem={(index) => handleRemoveitem(index)}

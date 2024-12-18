@@ -15,20 +15,37 @@ export const breakdownFieldSlice = createSlice({
   name: 'breakdownField',
   initialState: {
     breakdownItem: {
-      title: null,
-      value: null
+      package: {title: null, value: null},
+      type: {title: null, value: null},
     }
   },
   reducers: {
     selectedPackage: (state, action) => {
-      
+      // state.breakdownItem[action.payload.key] = {
+      //   title: action.payload.title,
+      //   value: action.payload.value,
+      // }
+      // state.breakdownItem.type = {title: null, value: null}
     },
-    setData: (state, action) => {
-      state.breakdownItem = action.payload;
+    setFieldsData: (state, action) => {
+      console.log("state", state)
+      state.breakdownItem[action.payload.key] = {
+        title: action.payload.title,
+        value: action.payload.value,
+      };
+
+      // create another action for this one
+      // state.breakdownItem = {
+      //   ...state.breakdownItem,         
+      //   package: {                     
+      //     title: action.payload.title,
+      //     value: action.payload.value,
+      //   }
+      // };
     }
   },
 })
 
-export const { selectedPackage, setData } = breakdownFieldSlice.actions
+export const { selectedPackage, setData, setFieldsData } = breakdownFieldSlice.actions
 
 export default breakdownFieldSlice.reducer
