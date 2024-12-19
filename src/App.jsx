@@ -13,7 +13,7 @@ function App() {
         </div>
       </div>
       <div className="w-[90%] mx-auto">
-        <div className="my-[50px] py-[50px] px-[50px]">
+        <div className="py-[50px] px-[50px]">
           <StudioQuote/>
         </div>
       </div>
