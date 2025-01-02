@@ -27,8 +27,6 @@ const RegularAddonsEdit = (props) => {
         )
     }
 
-    console.log("breakdownItems", breakDownitems)
-
     return (
         <div className="flex flex-col gap-[10px]">
             {

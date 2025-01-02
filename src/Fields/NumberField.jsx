@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { setFieldsData } from '../Redux/Slice/breakdownFieldSlice'
 
-const TextField = (props) => {
+const NumberField = (props) => {
     const dispatch = useDispatch();
     const data = props.data
 
@@ -21,7 +21,7 @@ const TextField = (props) => {
             <div className={`${props.pt ? props.pt : ""} ${props.width ? props.width : "w-[100%]"}`}>
                 <p className="text-[10px]">{props.fieldName}</p>
                 <input 
-                    type={"text"} 
+                    type={"number"} 
                     min={props.min ? props.min : null} 
                     placeholder={props.placeholder ? props.placeholder : ""} 
                     onChange={handleChange} 
@@ -32,4 +32,4 @@ const TextField = (props) => {
     )
 }
 
-export default TextField;
+export default NumberField;

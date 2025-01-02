@@ -11,14 +11,20 @@ import AutofillField from "../../../Fields/AutofillField";
 import TextAreaField from "../../../Fields/TextAreaField";
 import InclussionField from "../../../Fields/InclussionField";
 import RegularAddonsEdit from "./RegularAddonsEdit/RegularAddonsEdit";
+import NumberField from '../../../Fields/NumberField';
 
 const RegularPackageEdit = (props) => {
 
     const fieldData = useSelector((state) => state.breakdownField);
-    const packageValue = fieldData.breakdownItem.package.value
-    const typeValue = fieldData.breakdownItem.type.value
+    const breakdownItem = fieldData.breakdownItem
+
+    const packageValue = breakdownItem.package.value
+    const typeValue = breakdownItem.type.value
     const packageType =  ServicesData.data.find(i => i.value === packageValue )
     const packageTypedetails = packageType ? packageType.type.find(i => i.value === typeValue) : null 
+
+    const price = breakdownItem.price && breakdownItem.price.value
+    const clientQty = breakdownItem.clientQty && breakdownItem.clientQty.value ? breakdownItem.clientQty.value : 1
 
     return (
         <div className="p-[50px] flex flex-col justify-between gap-[20px]">
@@ -33,7 +39,7 @@ const RegularPackageEdit = (props) => {
                         fieldKey={"package"}
                         width={"w-[100%]"}
                         data={ServicesData.data}
-                        value={fieldData.breakdownItem.package.title}
+                        value={breakdownItem.package.title}
                     />
                     <div className="w-[100%]">
                         <p className="w-[100%]">Total Package Price: <span className="w-[100%]">0.00</span></p>
@@ -47,7 +53,7 @@ const RegularPackageEdit = (props) => {
                                 fieldKey={"type"}
                                 width={"w-[100%]"}
                                 data={packageType && packageType.type}
-                                value={fieldData.breakdownItem.type && fieldData.breakdownItem.type.title}
+                                value={breakdownItem.type && breakdownItem.type.title}
                             /> :
                             <DisableField
                                 fieldName={"Package Type"}   
@@ -57,22 +63,29 @@ const RegularPackageEdit = (props) => {
                         <div className="flex gap-[10px]">
                             <AutofillField 
                                 fieldName={"Package Price"}
+                                fieldKey={"price"}
                                 data={packageTypedetails && packageTypedetails.price}
                             />
                             <TextField 
                                 fieldName={"Number of client"}
+                                fieldKey={"clientQty"}
+                                placeholder={"1"}
                             />
                         </div>
                         <div className="flex gap-[10px]">
                             <TextField 
                                 fieldName={"Discount for"}
+                                fieldKey={"dicountFor"}
                             />
-                            <TextField 
-                                fieldName={"Discount Amount"}
+                            <NumberField 
+                                fieldName={"Discount Amount (%)"}
+                                fieldKey={"discountAmount"}
                             />
                         </div>
                         <AutofillField 
                             fieldName={"Total Amount"}
+                            fieldKey={"totalAmount"}
+                            data={price * clientQty}
                         />
                     </div>
                     <div className="w-[100%]">

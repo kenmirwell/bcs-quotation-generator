@@ -1,5 +1,22 @@
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { setFieldsData } from '../Redux/Slice/breakdownFieldSlice'
+
 const AutofillField = (props) => {
+    const dispatch = useDispatch();
     const data = props.data
+
+    useEffect(() => {
+        if (data) {
+            dispatch(
+                setFieldsData({
+                    title: props.fieldName,
+                    value: data, 
+                    key: props.fieldKey,
+                })
+            );
+        }
+    }, [data, dispatch])
 
     return (
         <>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { setData, setFieldsData } from '../Redux/Slice/breakdownFieldSlice'
-import SelectionPopup from '../Modal/SelectionPopup';
+import { setFieldsData } from '../Redux/Slice/breakdownFieldSlice'
+import SelectionPopup from '../Popup/SelectionPopup';
 
 const DisableField = (props) => {
     const [priorityStatus, setPriorityStatus] = useState(false);
